@@ -8,7 +8,7 @@
 #    For example: `eksctl create cluster`
 # 2. Create an ECR repository to store your images.
 #    For example:
-#      `aws ecr create-repository --repository-name example-eks --region us-east-2`.
+#      `aws ecr create-repository --repository-name andrei-eks-far --region us-west-2`.
 #      Replace the value of `ECR_REPOSITORY` in the workflow below with your 
 #      repository's name if you use something other than `example-eks`.
 # 3. Replace the value of `AWS_REGION` and `EKS_CLUSTER_NAME` in the workflow below
@@ -29,8 +29,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      AWS_REGION: eu-west-1
-      EKS_CLUSTER_NAME: fantastic-party-9999999999
+      AWS_REGION: us-west-2
+      EKS_CLUSTER_NAME: andrei-eks-far
 
     steps:
     - name: Checkout
@@ -51,7 +51,7 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: example-eks
+        ECR_REPOSITORY: andrei-repo
         IMAGE_TAG: ${{ github.sha }}
       run: |
         # Build a docker container and
